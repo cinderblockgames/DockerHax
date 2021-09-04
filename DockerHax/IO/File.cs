@@ -70,7 +70,7 @@ namespace DockerHax.IO
         //     on the current platform. -or- path is a directory.
         public static void AppendAllLines(string path, IEnumerable<string> contents)
         {
-            throw new NotImplementedException(); // idk
+            WithTempFile(temp => Underlying.AppendAllLines(temp, contents), path);
         }
 
         //
@@ -122,7 +122,7 @@ namespace DockerHax.IO
         //     the required permission.
         public static void AppendAllLines(string path, IEnumerable<string> contents, Encoding encoding)
         {
-            throw new NotImplementedException(); // idk
+            WithTempFile(temp => Underlying.AppendAllLines(temp, contents, encoding), path);
         }
 
         //
@@ -148,7 +148,7 @@ namespace DockerHax.IO
         //     A task that represents the asynchronous append operation.
         public static Task AppendAllLinesAsync(string path, IEnumerable<string> contents, Encoding encoding, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException(); // idk
+            return WithTempFile(temp => Underlying.AppendAllLinesAsync(temp, contents, encoding, cancellationToken), path);
         }
 
         //
@@ -171,7 +171,7 @@ namespace DockerHax.IO
         //     A task that represents the asynchronous append operation.
         public static Task AppendAllLinesAsync(string path, IEnumerable<string> contents, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException(); // idk
+            return WithTempFile(temp => Underlying.AppendAllLinesAsync(temp, contents, cancellationToken), path);
         }
 
         //
@@ -217,7 +217,7 @@ namespace DockerHax.IO
         //     The caller does not have the required permission.
         public static void AppendAllText(string path, string? contents)
         {
-            throw new NotImplementedException(); // idk
+            WithTempFile(temp => Underlying.AppendAllText(temp, contents), path);
         }
 
         //
@@ -265,7 +265,7 @@ namespace DockerHax.IO
         //     The caller does not have the required permission.
         public static void AppendAllText(string path, string? contents, Encoding encoding)
         {
-            throw new NotImplementedException(); // idk
+            WithTempFile(temp => Underlying.AppendAllText(temp, contents, encoding), path);
         }
 
         //
@@ -291,7 +291,7 @@ namespace DockerHax.IO
         //     A task that represents the asynchronous append operation.
         public static Task AppendAllTextAsync(string path, string? contents, Encoding encoding, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException(); // idk
+            return WithTempFile(temp => Underlying.AppendAllTextAsync(temp, contents, encoding, cancellationToken), path);
         }
 
         //
@@ -313,7 +313,7 @@ namespace DockerHax.IO
         //     A task that represents the asynchronous append operation.
         public static Task AppendAllTextAsync(string path, string? contents, CancellationToken cancellationToken = default)
         {
-            throw new NotImplementedException(); // idk
+            return WithTempFile(temp => Underlying.AppendAllTextAsync(temp, contents, cancellationToken), path);
         }
 
         //
@@ -638,7 +638,7 @@ namespace DockerHax.IO
         [SupportedOSPlatform("windows")]
         public static void Decrypt(string path)
         {
-            throw new NotImplementedException(); // idk
+            WithTempFile(temp => Underlying.Decrypt(temp), path);
         }
 
         //
@@ -724,7 +724,7 @@ namespace DockerHax.IO
         [SupportedOSPlatform("windows")]
         public static void Encrypt(string path)
         {
-            throw new NotImplementedException(); // idk
+            WithTempFile(temp => Underlying.Encrypt(temp), path);
         }
 
         //
@@ -1287,7 +1287,7 @@ namespace DockerHax.IO
         //     An I/O error occurred while opening the file.
         public static FileStream OpenRead(string path)
         {
-            throw new NotImplementedException(); // idk
+            return Underlying.OpenRead(path);
         }
 
         //
@@ -1325,7 +1325,7 @@ namespace DockerHax.IO
         //     path is in an invalid format.
         public static StreamReader OpenText(string path)
         {
-            throw new NotImplementedException(); // idk
+            return Underlying.OpenText(path);
         }
 
         //
@@ -1848,7 +1848,7 @@ namespace DockerHax.IO
         //     The caller does not have the required permission.
         public static void Replace(string sourceFileName, string destinationFileName, string? destinationBackupFileName)
         {
-            throw new NotImplementedException(); // idk
+            Underlying.Replace(sourceFileName, destinationFileName, destinationBackupFileName);
         }
 
         //
@@ -1906,7 +1906,7 @@ namespace DockerHax.IO
         //     The caller does not have the required permission.
         public static void Replace(string sourceFileName, string destinationFileName, string? destinationBackupFileName, bool ignoreMetadataErrors)
         {
-            throw new NotImplementedException(); // idk
+            Underlying.Replace(sourceFileName, destinationFileName, destinationBackupFileName, ignoreMetadataErrors);
         }
 
         //
@@ -2236,7 +2236,7 @@ namespace DockerHax.IO
         //     The caller does not have the required permission.
         public static void WriteAllBytes(string path, byte[] bytes)
         {
-            WithTempFile(temp => Underlying.WriteAllBytes(temp, bytes), path, true);
+            WithTempFile(temp => Underlying.WriteAllBytes(temp, bytes), path);
         }
 
         //
@@ -2258,7 +2258,7 @@ namespace DockerHax.IO
         //     A task that represents the asynchronous write operation.
         public static Task WriteAllBytesAsync(string path, byte[] bytes, CancellationToken cancellationToken = default)
         {
-            return WithTempFile(temp => Underlying.WriteAllBytesAsync(temp, bytes, cancellationToken), path, true);
+            return WithTempFile(temp => Underlying.WriteAllBytesAsync(temp, bytes, cancellationToken), path);
         }
 
         //
@@ -2302,7 +2302,7 @@ namespace DockerHax.IO
         //     directory. -or- The caller does not have the required permission.
         public static void WriteAllLines(string path, IEnumerable<string> contents)
         {
-            WithTempFile(temp => Underlying.WriteAllLines(temp, contents), path, true);
+            WithTempFile(temp => Underlying.WriteAllLines(temp, contents), path);
         }
 
         //
@@ -2349,7 +2349,7 @@ namespace DockerHax.IO
         //     directory. -or- The caller does not have the required permission.
         public static void WriteAllLines(string path, IEnumerable<string> contents, Encoding encoding)
         {
-            WithTempFile(temp => Underlying.WriteAllLines(temp, contents, encoding), path, true);
+            WithTempFile(temp => Underlying.WriteAllLines(temp, contents, encoding), path);
         }
 
         //
@@ -2393,7 +2393,7 @@ namespace DockerHax.IO
         //     The caller does not have the required permission.
         public static void WriteAllLines(string path, string[] contents)
         {
-            WithTempFile(temp => Underlying.WriteAllLines(temp, contents), path, true);
+            WithTempFile(temp => Underlying.WriteAllLines(temp, contents), path);
         }
 
         //
@@ -2441,7 +2441,7 @@ namespace DockerHax.IO
         //     The caller does not have the required permission.
         public static void WriteAllLines(string path, string[] contents, Encoding encoding)
         {
-            WithTempFile(temp => Underlying.WriteAllLines(temp, contents, encoding), path, true);
+            WithTempFile(temp => Underlying.WriteAllLines(temp, contents, encoding), path);
         }
 
         //
@@ -2466,7 +2466,7 @@ namespace DockerHax.IO
         //     A task that represents the asynchronous write operation.
         public static Task WriteAllLinesAsync(string path, IEnumerable<string> contents, Encoding encoding, CancellationToken cancellationToken = default)
         {
-            return WithTempFile(temp => Underlying.WriteAllLinesAsync(temp, contents, encoding, cancellationToken), path, true);
+            return WithTempFile(temp => Underlying.WriteAllLinesAsync(temp, contents, encoding, cancellationToken), path);
         }
 
         //
@@ -2488,7 +2488,7 @@ namespace DockerHax.IO
         //     A task that represents the asynchronous write operation.
         public static Task WriteAllLinesAsync(string path, IEnumerable<string> contents, CancellationToken cancellationToken = default)
         {
-            return WithTempFile(temp => Underlying.WriteAllLinesAsync(temp, contents, cancellationToken), path, true);
+            return WithTempFile(temp => Underlying.WriteAllLinesAsync(temp, contents, cancellationToken), path);
         }
 
         //
@@ -2532,7 +2532,7 @@ namespace DockerHax.IO
         //     The caller does not have the required permission.
         public static void WriteAllText(string path, string? contents)
         {
-            WithTempFile(temp => Underlying.WriteAllText(temp, contents), path, true);
+            WithTempFile(temp => Underlying.WriteAllText(temp, contents), path);
         }
 
         //
@@ -2580,7 +2580,7 @@ namespace DockerHax.IO
         //     The caller does not have the required permission.
         public static void WriteAllText(string path, string? contents, Encoding encoding)
         {
-            WithTempFile(temp => Underlying.WriteAllText(temp, contents, encoding), path, true);
+            WithTempFile(temp => Underlying.WriteAllText(temp, contents, encoding), path);
         }
 
         //
@@ -2606,7 +2606,7 @@ namespace DockerHax.IO
         //     A task that represents the asynchronous write operation.
         public static Task WriteAllTextAsync(string path, string? contents, Encoding encoding, CancellationToken cancellationToken = default)
         {
-            return WithTempFile(temp => Underlying.WriteAllTextAsync(temp, contents, encoding, cancellationToken), path, true);
+            return WithTempFile(temp => Underlying.WriteAllTextAsync(temp, contents, encoding, cancellationToken), path);
         }
 
         //
@@ -2628,20 +2628,24 @@ namespace DockerHax.IO
         //     A task that represents the asynchronous write operation.
         public static Task WriteAllTextAsync(string path, string? contents, CancellationToken cancellationToken = default)
         {
-            return WithTempFile(temp => Underlying.WriteAllTextAsync(temp, contents, cancellationToken), path, true);
+            return WithTempFile(temp => Underlying.WriteAllTextAsync(temp, contents, cancellationToken), path);
         }
 
         #endregion
 
         #region " Private Helper Methods "
 
-        private static void WithTempFile(Action<string> action, string path, bool overwite)
+        private static void WithTempFile(Action<string> action, string path, bool overwite = true)
         {
-            var tempFileName = Path.GetTempFileName();
+            var tempFileName = GetTempFileName(path);
             try
             {
                 action(tempFileName);
                 Underlying.Move(tempFileName, path, overwite);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Exception encountered while working with temp file '{tempFileName}' representing '{path}'.", ex);
             }
             finally
             {
@@ -2653,9 +2657,9 @@ namespace DockerHax.IO
             }
         }
 
-        private static T WithTempFile<T>(Func<string, T> func, string path, bool overwite)
+        private static T WithTempFile<T>(Func<string, T> func, string path, bool overwite = true)
         {
-            var tempFileName = Path.GetTempFileName();
+            var tempFileName = GetTempFileName(path);
             try
             {
                 var result = func(tempFileName);
@@ -2669,6 +2673,10 @@ namespace DockerHax.IO
                 }
                 return result;
             }
+            catch (Exception ex)
+            {
+                throw new Exception($"Exception encountered while working with temp file '{tempFileName}' representing '{path}'.", ex);
+            }
             finally
             {
                 // Don't orphan any temp files.
@@ -2677,6 +2685,17 @@ namespace DockerHax.IO
                     Underlying.Delete(tempFileName);
                 }
             }
+        }
+
+        private static string GetTempFileName(string path)
+        {
+            var tempFileName = Path.GetTempFileName();
+            if (Underlying.Exists(path))
+            {
+                // Prepare for file modifications.
+                Underlying.Copy(path, tempFileName);
+            }
+            return tempFileName;
         }
 
         #endregion
