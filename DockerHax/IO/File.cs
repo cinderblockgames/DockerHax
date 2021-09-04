@@ -25,150 +25,156 @@ namespace DockerHax.IO
 
         #region " System.IO.File Wrappers "
 
-        //
-        // Summary:
-        //     Appends lines to a file, and then closes the file. If the specified file does
-        //     not exist, this method creates a file, writes the specified lines to the file,
-        //     and then closes the file.
-        //
-        // Parameters:
-        //   path:
-        //     The file to append the lines to. The file is created if it doesn't already exist.
-        //
-        //   contents:
-        //     The lines to append to the file.
-        //
-        // Exceptions:
-        //   T:System.ArgumentException:
-        //     path is a zero-length string, contains only white space, or contains one more
-        //     invalid characters defined by the System.IO.Path.GetInvalidPathChars method.
-        //
-        //   T:System.ArgumentNullException:
-        //     Either path or contents is null.
-        //
-        //   T:System.IO.DirectoryNotFoundException:
-        //     path is invalid (for example, the directory doesn't exist or it is on an unmapped
-        //     drive).
-        //
-        //   T:System.IO.FileNotFoundException:
-        //     The file specified by path was not found.
-        //
-        //   T:System.IO.IOException:
-        //     An I/O error occurred while opening the file.
-        //
-        //   T:System.IO.PathTooLongException:
-        //     path exceeds the system-defined maximum length.
-        //
-        //   T:System.NotSupportedException:
-        //     path is in an invalid format.
-        //
-        //   T:System.Security.SecurityException:
-        //     The caller does not have permission to write to the file.
-        //
-        //   T:System.UnauthorizedAccessException:
-        //     path specifies a file that is read-only. -or- This operation is not supported
-        //     on the current platform. -or- path is a directory.
+        /// <summary>
+        /// Appends lines to a file, and then closes the file. If the specified file does
+        /// not exist, this method creates a file, writes the specified lines to the file,
+        /// and then closes the file.
+        /// </summary>
+        /// <param name="path">
+        /// The file to append the lines to. The file is created if it doesn't already exist.
+        /// </param>
+        /// <param name="contents">
+        /// The lines to append to the file.
+        /// </param>
+        /// <exception cref="T:System.ArgumentException">
+        /// <paramref name="path" /> is a zero-length string, contains only white space, or contains one more
+        /// invalid characters defined by the <see cref="System.IO.Path.InvalidPathChars" /> method.
+        /// </exception>
+        /// <exception cref="T:System.ArgumentNullException">
+        /// Either <paramref name="path" /> or <paramref name="contents" /> is null.
+        /// </exception>
+        /// <exception cref="T:System.IO.DirectoryNotFoundException">
+        /// <paramref name="path" /> is invalid (for example, the directory doesn't exist or it is on an unmapped
+        /// drive).
+        /// </exception>
+        /// <exception cref="T:System.IO.FileNotFoundException">
+        /// The file specified by <paramref name="path" /> was not found.
+        /// </exception>
+        /// <exception cref="T:System.IO.IOException">
+        /// An I/O error occurred while opening the file.
+        /// </exception>
+        /// <exception cref="T:System.IO.PathTooLongException">
+        /// <paramref name="path" /> exceeds the system-defined maximum length.
+        /// </exception>
+        /// <exception cref="T:System.NotSupportedException">
+        /// <paramref name="path" /> is in an invalid format.
+        /// </exception>
+        /// <exception cref="T:System.Security.SecurityException">
+        /// The caller does not have permission to write to the file.
+        /// </exception>
+        /// <exception cref="T:System.UnauthorizedAccessException">
+        /// <paramref name="path" />specifies a file that is read-only. -or- This operation is not supported
+        /// on the current platform. -or- <paramref name="path" /> is a directory.
+        /// </exception>
+        /// <remarks>
+        /// Uses temp file.
+        /// </remarks>
         public static void AppendAllLines(string path, IEnumerable<string> contents)
         {
             WithTempFile(temp => Underlying.AppendAllLines(temp, contents), path);
         }
 
-        //
-        // Summary:
-        //     Appends lines to a file by using a specified encoding, and then closes the file.
-        //     If the specified file does not exist, this method creates a file, writes the
-        //     specified lines to the file, and then closes the file.
-        //
-        // Parameters:
-        //   path:
-        //     The file to append the lines to. The file is created if it doesn't already exist.
-        //
-        //   contents:
-        //     The lines to append to the file.
-        //
-        //   encoding:
-        //     The character encoding to use.
-        //
-        // Exceptions:
-        //   T:System.ArgumentException:
-        //     path is a zero-length string, contains only white space, or contains one more
-        //     invalid characters defined by the System.IO.Path.GetInvalidPathChars method.
-        //
-        //   T:System.ArgumentNullException:
-        //     Either path, contents, or encoding is null.
-        //
-        //   T:System.IO.DirectoryNotFoundException:
-        //     path is invalid (for example, the directory doesn't exist or it is on an unmapped
-        //     drive).
-        //
-        //   T:System.IO.FileNotFoundException:
-        //     The file specified by path was not found.
-        //
-        //   T:System.IO.IOException:
-        //     An I/O error occurred while opening the file.
-        //
-        //   T:System.IO.PathTooLongException:
-        //     path exceeds the system-defined maximum length.
-        //
-        //   T:System.NotSupportedException:
-        //     path is in an invalid format.
-        //
-        //   T:System.Security.SecurityException:
-        //     The caller does not have the required permission.
-        //
-        //   T:System.UnauthorizedAccessException:
-        //     path specifies a file that is read-only. -or- This operation is not supported
-        //     on the current platform. -or- path is a directory. -or- The caller does not have
-        //     the required permission.
+        /// <summary>
+        /// Appends lines to a file by using a specified encoding, and then closes the file.
+        /// If the specified file does not exist, this method creates a file, writes the
+        /// specified lines to the file, and then closes the file.
+        /// </summary>
+        /// <param name="path">
+        /// The file to append the lines to. The file is created if it doesn't already exist.
+        /// </param>
+        /// <param name="contents">
+        /// The lines to append to the file.
+        /// </param>
+        /// <param name="encoding">
+        /// The character encoding to use.
+        /// </param>
+        /// <exception cref="T:System.ArgumentException">
+        /// <paramref name="path" /> is a zero-length string, contains only white space, or contains one more
+        /// invalid characters defined by the <see cref="System.IO.Path.InvalidPathChars" /> method.
+        /// </exception>
+        /// <exception cref="T:System.ArgumentNullException">
+        /// Either <paramref name="path" />, <paramref name="contents" />, or <paramref name="encoding" /> is null.
+        /// </exception>
+        /// <exception cref="T:System.IO.DirectoryNotFoundException">
+        /// <paramref name="path" /> is invalid (for example, the directory doesn't exist or it is on an unmapped
+        /// drive).
+        /// </exception>
+        /// <exception cref="T:System.IO.FileNotFoundException">
+        /// The file specified by <paramref name="path" /> was not found.
+        /// </exception>
+        /// <exception cref="T:System.IO.IOException">
+        /// An I/O error occurred while opening the file.
+        /// </exception>
+        /// <exception cref="T:System.IO.PathTooLongException">
+        /// <paramref name="path" /> exceeds the system-defined maximum length.
+        /// </exception>
+        /// <exception cref="T:System.NotSupportedException">
+        /// <paramref name="path" /> is in an invalid format.
+        /// </exception>
+        /// <exception cref="T:System.Security.SecurityException">
+        /// The caller does not have permission to write to the file.
+        /// </exception>
+        /// <exception cref="T:System.UnauthorizedAccessException">
+        /// <paramref name="path" />specifies a file that is read-only. -or- This operation is not supported
+        /// on the current platform. -or- <paramref name="path" /> is a directory. -or- The caller does not have
+        /// the required permission.
+        /// </exception>
+        /// <remarks>
+        /// Uses temp file.
+        /// </remarks>
         public static void AppendAllLines(string path, IEnumerable<string> contents, Encoding encoding)
         {
             WithTempFile(temp => Underlying.AppendAllLines(temp, contents, encoding), path);
         }
 
-        //
-        // Summary:
-        //     Asynchronously appends lines to a file by using a specified encoding, and then
-        //     closes the file. If the specified file does not exist, this method creates a
-        //     file, writes the specified lines to the file, and then closes the file.
-        //
-        // Parameters:
-        //   path:
-        //     The file to append the lines to. The file is created if it doesn't already exist.
-        //
-        //   contents:
-        //     The lines to append to the file.
-        //
-        //   encoding:
-        //     The character encoding to use.
-        //
-        //   cancellationToken:
-        //     The token to monitor for cancellation requests. The default value is System.Threading.CancellationToken.None.
-        //
-        // Returns:
-        //     A task that represents the asynchronous append operation.
+        /// <summary>
+        /// Asynchronously appends lines to a file by using a specified encoding, and then
+        /// closes the file. If the specified file does not exist, this method creates a
+        /// file, writes the specified lines to the file, and then closes the file. 
+        /// </summary>
+        /// <param name="path">
+        /// The file to append the lines to. The file is created if it doesn't already exist.
+        /// </param>
+        /// <param name="contents">
+        /// The lines to append to the file.
+        /// </param>
+        /// <param name="encoding">
+        /// The character encoding to use.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// The token to monitor for cancellation requests. The default value is <see cref="System.Threading.CancellationToken.None" />.
+        /// </param>
+        /// <returns>
+        /// A task that represents the asynchronous append operation.
+        /// </returns>
+        /// <remarks>
+        /// Uses temp file.
+        /// </remarks>
         public static Task AppendAllLinesAsync(string path, IEnumerable<string> contents, Encoding encoding, CancellationToken cancellationToken = default)
         {
             return WithTempFile(temp => Underlying.AppendAllLinesAsync(temp, contents, encoding, cancellationToken), path);
         }
 
-        //
-        // Summary:
-        //     Asynchronously appends lines to a file, and then closes the file. If the specified
-        //     file does not exist, this method creates a file, writes the specified lines to
-        //     the file, and then closes the file.
-        //
-        // Parameters:
-        //   path:
-        //     The file to append the lines to. The file is created if it doesn't already exist.
-        //
-        //   contents:
-        //     The lines to append to the file.
-        //
-        //   cancellationToken:
-        //     The token to monitor for cancellation requests. The default value is System.Threading.CancellationToken.None.
-        //
-        // Returns:
-        //     A task that represents the asynchronous append operation.
+        /// <summary>
+        /// Asynchronously appends lines to a file, and then closes the file. If the specified
+        /// file does not exist, this method creates a file, writes the specified lines to
+        /// the file, and then closes the file. 
+        /// </summary>
+        /// <param name="path">
+        /// The file to append the lines to. The file is created if it doesn't already exist.
+        /// </param>
+        /// <param name="contents">
+        /// The lines to append to the file.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// The token to monitor for cancellation requests. The default value is <see cref="System.Threading.CancellationToken.None" />.
+        /// </param>
+        /// <returns>
+        /// A task that represents the asynchronous append operation.
+        /// </returns>
+        /// <remarks>
+        /// Uses temp file.
+        /// </remarks>
         public static Task AppendAllLinesAsync(string path, IEnumerable<string> contents, CancellationToken cancellationToken = default)
         {
             return WithTempFile(temp => Underlying.AppendAllLinesAsync(temp, contents, cancellationToken), path);
@@ -268,49 +274,53 @@ namespace DockerHax.IO
             WithTempFile(temp => Underlying.AppendAllText(temp, contents, encoding), path);
         }
 
-        //
-        // Summary:
-        //     Asynchronously opens a file or creates the file if it does not already exist,
-        //     appends the specified string to the file using the specified encoding, and then
-        //     closes the file.
-        //
-        // Parameters:
-        //   path:
-        //     The file to append the specified string to.
-        //
-        //   contents:
-        //     The string to append to the file.
-        //
-        //   encoding:
-        //     The character encoding to use.
-        //
-        //   cancellationToken:
-        //     The token to monitor for cancellation requests. The default value is System.Threading.CancellationToken.None.
-        //
-        // Returns:
-        //     A task that represents the asynchronous append operation.
+        /// <summary>
+        /// Asynchronously opens a file or creates the file if it does not already exist,
+        /// appends the specified string to the file using the specified encoding, and then
+        /// closes the file.
+        /// </summary>
+        /// <param name="path">
+        /// The file to append the specified string to.
+        /// </param>
+        /// <param name="contents">
+        /// The string to append to the file.
+        /// </param>
+        /// <param name="encoding">
+        /// The character encoding to use.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// The token to monitor for cancellation requests. The default value is <see cref="System.Threading.CancellationToken.None" />.
+        /// </param>
+        /// <returns>
+        /// A task that represents the asynchronous append operation.
+        /// </returns>
+        /// <remarks>
+        /// Uses temp file.
+        /// </remarks>
         public static Task AppendAllTextAsync(string path, string? contents, Encoding encoding, CancellationToken cancellationToken = default)
         {
             return WithTempFile(temp => Underlying.AppendAllTextAsync(temp, contents, encoding, cancellationToken), path);
         }
 
-        //
-        // Summary:
-        //     Asynchronously opens a file or creates a file if it does not already exist, appends
-        //     the specified string to the file, and then closes the file.
-        //
-        // Parameters:
-        //   path:
-        //     The file to append the specified string to.
-        //
-        //   contents:
-        //     The string to append to the file.
-        //
-        //   cancellationToken:
-        //     The token to monitor for cancellation requests. The default value is System.Threading.CancellationToken.None.
-        //
-        // Returns:
-        //     A task that represents the asynchronous append operation.
+        /// <summary>
+        /// Asynchronously opens a file or creates a file if it does not already exist, appends
+        /// the specified string to the file, and then closes the file.
+        /// </summary>
+        /// <param name="path">
+        /// The file to append the specified string to.
+        /// </param>
+        /// <param name="contents">
+        /// The string to append to the file.
+        /// </param>
+        /// <param name="cancellationToken">
+        /// The token to monitor for cancellation requests. The default value is <see cref="System.Threading.CancellationToken.None" />.
+        /// </param>
+        /// <returns>
+        /// A task that represents the asynchronous append operation.
+        /// </returns>
+        /// <remarks>
+        /// Uses temp file.
+        /// </remarks>
         public static Task AppendAllTextAsync(string path, string? contents, CancellationToken cancellationToken = default)
         {
             return WithTempFile(temp => Underlying.AppendAllTextAsync(temp, contents, cancellationToken), path);
@@ -356,21 +366,41 @@ namespace DockerHax.IO
 
         /// <summary>
         /// Copies an existing file to a new file. Overwriting a file of the same name is
-        ///  not allowed.
+        /// not allowed.
         /// </summary>
-        /// <param name="sourceFileName">The file to copy.</param>
-        /// <param name="destFileName">The name of the destination file. This cannot be a directory or an existing file.</param>
-        /// <exception cref="T:System.UnauthorizedAccessException">The caller does not have the required permission.</exception>
-        /// <exception cref="T:System.ArgumentException"><paramref name="sourceFile" /> or <paramref name="destFileName" /> is a zero-length string, contains only white space,
-        ///     or contains one or more invalid characters as defined by <see cref="System.IO.Path.InvalidPathChars" />.
-        ///     -or- <paramref name="sourceFile" /> or <paramref name="destFileName" /> specifies a directory.</exception>
-        /// <exception cref="T:System.ArgumentNullException"><paramref name="sourceFile" /> or <paramref name="destFileName" /> is null.</exception>
-        /// <exception cref="T:System.IO.PathTooLongException">The specified path, file name, or both exceed the system-defined maximum length.</exception>
-        /// <exception cref="T:System.IO.DirectoryNotFoundException">The path specified in <paramref name="sourceFile" /> or <paramref name="destFileName" /> is invalid (for example,
-        ///     it is on an unmapped drive).</exception>
-        /// <exception cref="T:System.IO.FileNotFoundException"><paramref name="sourceFile" /> was not found.</exception>
-        /// <exception cref="T:System.IO.IOException"><paramref name="destFileName" /> exists. -or- An I/O error has occurred.</exception>
-        /// <exception cref="T:System.NotSupportedException"><paramref name="sourceFile" /> or <paramref name="destFileName" /> is in an invalid format.</exception>
+        /// <param name="sourceFileName">
+        /// The file to copy.
+        /// </param>
+        /// <param name="destFileName">
+        /// The name of the destination file. This cannot be a directory or an existing file.
+        /// </param>
+        /// <exception cref="T:System.UnauthorizedAccessException">
+        /// The caller does not have the required permission.
+        /// </exception>
+        /// <exception cref="T:System.ArgumentException">
+        /// <paramref name="sourceFile" /> or <paramref name="destFileName" /> is a zero-length string, contains only white space,
+        /// or contains one or more invalid characters as defined by <see cref="System.IO.Path.InvalidPathChars" />.
+        /// -or- <paramref name="sourceFile" /> or <paramref name="destFileName" /> specifies a directory.
+        /// </exception>
+        /// <exception cref="T:System.ArgumentNullException">
+        /// <paramref name="sourceFile" /> or <paramref name="destFileName" /> is null.
+        /// </exception>
+        /// <exception cref="T:System.IO.PathTooLongException">
+        /// The specified path, file name, or both exceed the system-defined maximum length.
+        /// </exception>
+        /// <exception cref="T:System.IO.DirectoryNotFoundException">
+        /// The path specified in <paramref name="sourceFile" /> or <paramref name="destFileName" /> is invalid (for example,
+        /// it is on an unmapped drive).
+        /// </exception>
+        /// <exception cref="T:System.IO.FileNotFoundException">
+        /// <paramref name="sourceFile" /> was not found.
+        /// </exception>
+        /// <exception cref="T:System.IO.IOException">
+        /// <paramref name="destFileName" /> exists. -or- An I/O error has occurred.
+        /// </exception>
+        /// <exception cref="T:System.NotSupportedException">
+        /// <paramref name="sourceFile" /> or <paramref name="destFileName" /> is in an invalid format.
+        /// </exception>
         /// <remarks>
         /// Direct passthrough.
         /// </remarks>
@@ -727,20 +757,22 @@ namespace DockerHax.IO
             WithTempFile(temp => Underlying.Encrypt(temp), path);
         }
 
-        //
-        // Summary:
-        //     Determines whether the specified file exists.
-        //
-        // Parameters:
-        //   path:
-        //     The file to check.
-        //
-        // Returns:
-        //     true if the caller has the required permissions and path contains the name of
-        //     an existing file; otherwise, false. This method also returns false if path is
-        //     null, an invalid path, or a zero-length string. If the caller does not have sufficient
-        //     permissions to read the specified file, no exception is thrown and the method
-        //     returns false regardless of the existence of path.
+        /// <summary>
+        /// Determines whether the specified file exists.
+        /// </summary>
+        /// <param name="path">
+        /// The file to check.
+        /// </param>
+        /// <returns>
+        /// true if the caller has the required permissions and <paramref name="path" /> contains the name of
+        /// an existing file; otherwise, false. This method also returns false if <paramref name="path" /> is
+        /// null, an invalid path, or a zero-length string. If the caller does not have sufficient
+        /// permissions to read the specified file, no exception is thrown and the method
+        /// returns false regardless of the existence of <paramref name="path" />.
+        /// </returns>
+        /// <remarks>
+        /// Direct passthrough.
+        /// </remarks>
         public static bool Exists(string? path)
         {
             return Underlying.Exists(path);
