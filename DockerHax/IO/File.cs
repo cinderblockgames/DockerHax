@@ -2677,15 +2677,12 @@ namespace DockerHax.IO
             }
             catch (Exception ex)
             {
-                throw new Exception($"Exception encountered while working with temp file '{tempFileName}' representing '{path}'.", ex);
-            }
-            finally
-            {
                 // Don't orphan any temp files.
                 if (Underlying.Exists(tempFileName))
                 {
                     Underlying.Delete(tempFileName);
                 }
+                throw new Exception($"Exception encountered while working with temp file '{tempFileName}' representing '{path}'.", ex);
             }
         }
 
@@ -2707,15 +2704,12 @@ namespace DockerHax.IO
             }
             catch (Exception ex)
             {
-                throw new Exception($"Exception encountered while working with temp file '{tempFileName}' representing '{path}'.", ex);
-            }
-            finally
-            {
                 // Don't orphan any temp files.
                 if (Underlying.Exists(tempFileName))
                 {
                     Underlying.Delete(tempFileName);
                 }
+                throw new Exception($"Exception encountered while working with temp file '{tempFileName}' representing '{path}'.", ex);
             }
         }
 
