@@ -2725,7 +2725,7 @@ namespace DockerHax.IO
             if (Underlying.Exists(path))
             {
                 // Prepare for file modifications.
-                Underlying.Copy(path, tempFileName);
+                Underlying.Copy(path, tempFileName, true); // Path.GetTempFileName creates an empty file, so overwrite it.
             }
             return tempFileName;
         }
