@@ -7,7 +7,7 @@
     <Description>A collection of hax for running .NET in Docker.</Description>
     <PackageLicenseExpression></PackageLicenseExpression>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <PackageProjectUrl></PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/cinderblockgames/DockerHax</PackageProjectUrl>
     <RepositoryUrl>https://github.com/cinderblockgames/DockerHax</RepositoryUrl>
   </PropertyGroup>
 
